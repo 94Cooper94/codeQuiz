@@ -1,4 +1,4 @@
-
+document.querySelector("#generate").addEventListener("click",setTime);
 // START TIMER CODE
 var timeEl = document.querySelector(".time");
 var mainEl = document.getElementById("main");
