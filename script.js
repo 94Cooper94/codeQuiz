@@ -33,22 +33,21 @@
 
 var counter = document.querySelector("#counter");
 
-var count = localStorage.getItem("count");
+var score = localStorage.getItem("score");
 
-counter.textContent = count;
+counter.textContent = score;
 
-addButton.addEventListener("click", function() {
-  count++;
-  counter.textContent = count;
+correct.addEventListener("click", function() {
+  score++;
+  score.textContent = score;
 
-  localStorage.setItem("count", count);
+  localStorage.setItem("score", score);
 });
 
-subtractButton.addEventListener("click", function() {
-  count--;
-  counter.textContent = count;
+button1.addEventListener("click", function() {
+  counter.textContent = score;
 
-  localStorage.setItem("count", count);
+  localStorage.setItem("score", score);
 });
 
 // END SCORE TRACKER
