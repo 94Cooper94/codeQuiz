@@ -1,21 +1,55 @@
+<!-- As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+
+GIVEN I am taking a code quiz
+WHEN I click the start button
+THEN a timer starts and I am presented with a question
+WHEN I answer a question
+THEN I am presented with another question
+WHEN I answer a question incorrectly
+THEN time is subtracted from the clock
+WHEN all questions are answered or the timer reaches 0
+THEN the game is over
+WHEN the game is over
+THEN I can save my initials and score -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Code Quiz Wiz</title>
+    <title>Code Wiz</title>
     <link rel="stylesheet" href="reset.css">    
     <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap #getbootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
+
 <body>
-    <h1 class="time"></h1>
-    <div id="main"></div>
-    
-    <div class="card-footer">
-        <button id="generate" class="btn">Start Quiz</button>
+
+    <div class="wrapper">
+        <h1>Score Tracker</h1>
+        <h2>Total Score <span id="counter">0</span></h2>
     </div>
-    
+
+
+
+    <button id="start">Start Quiz</button>
+
+    <div id="quiz"></div>
+
+    <div class="btn-group-vertical" role="group" aria-label="Basic example">
+        <button type="button" id="button1" class="btn btn-secondary"></button>
+        <button type="button" id="button2" class="btn btn-secondary"></button>
+        <button type="button" id="button3" class="btn btn-secondary"></button>
+        <button type="button" id="button4" class="btn btn-secondary"></button>
+    </div>
+
+    <div id="results"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
+
+
