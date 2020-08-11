@@ -29,7 +29,7 @@ THEN I can save my initials and score -->
 
 <body>
 
-
+<!-- navbar that takes users to the highscore page -->
 <nav class="header">
 
     <div class="card-body justify-content-end">
@@ -39,13 +39,10 @@ THEN I can save my initials and score -->
 
 </nav>
 
-
-
-
-
-
+<!-- container class that holds each page value -->
 <main class="container">
    
+    <!-- this will be the 'home' page value -->
     <div id="startPage">
         <h1 id="startHeader">Code Quiz Wizards</h1>
         <p id="startText">Attempt to answer the following five questions. Disregard time in this activity-- aim for the highest score possible.</p>
@@ -54,21 +51,25 @@ THEN I can save my initials and score -->
         </div>
     </div>
  
-  
+    <!-- this will be the cycling 'question page' value -->
     <div id="quizPage">
         <div class="btn-group-vertical" role="group" aria-label="Basic example">
             <h3 id="quizQuestion"></h3>
             <ol>
-            <li><button type="button" id="button1" class="btn btn-secondary"></button></li>
-            <li><button type="button" id="button2" class="btn btn-secondary"></button></li>
-            <li><button type="button" id="button3" class="btn btn-secondary"></button></li>
-            <li><button type="button" id="button4" class="btn btn-secondary"></button></li>
+            <li><button type="button" id="btn1" class="btn btn-secondary"></button></li>
+            <li><button type="button" id="btn2" class="btn btn-secondary"></button></li>
+            <li><button type="button" id="btn3" class="btn btn-secondary"></button></li>
+            <li><button type="button" id="btn4" class="btn btn-secondary"></button></li>
+            <!-- working on making this invisible and synchronize with the correlating response -->
+            <li><button type="button" id="correctBtn" class="btn btn-secondary"></button></li>
             </ol>
         </div>
 
+        <!-- tracks the users responses -->
         <div id="quizAnswer"></div>
     </div>
 
+    <!-- the final page that requests user initials to pair with their score -->
     <div id="scorePage">
         <h3 id="resultsText">the results are in...</h3>
         <div id="finalScore"></div>
