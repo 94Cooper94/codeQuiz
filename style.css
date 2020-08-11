@@ -1,0 +1,12 @@
+#startPage {
+    display: block;
+}
+.header {
+    display: none;
+}
+#quizPage {
+    display: none;
+}
+#scorePage {
+    display: none;
+}

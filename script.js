@@ -14,6 +14,7 @@ var option3 = document.getElementById("btn3");
 var option4 = document.getElementById("btn4");
 var correctOption = document.getElementById("correctBtn");
 
+
 var questionArr = [
   {
     "quizQuestion" : "Commonly referred to the building block languages of the internet:",
@@ -21,37 +22,43 @@ var questionArr = [
     "btn2" : "2. Numbers, strings and booleans",
     "btn3" : "3. Pokemon, Super Mario, Legend of Zelda",
     "btn4" : "4. HTTPS, DSL, USPS",
-    "correctBtn" : "1. HTML, CSS, Javascript"
   },{
     "quizQuestion" : "HTML is to content as CSS is to _____:",
     "btn1" : "1. Programming logic",
     "btn2" : "2. Machine learning",
     "btn3" : "3. Styling elements",
     "btn4" : "4. Plotting world destruction",
-    "correctBtn" : "3. Styling elements"
   },{
     "quizQuestion" : "Which companies created and support Angular and React:",
     "btn1" : "1. Yahoo and Bing",
     "btn2" : "2. Google and Facebook",
     "btn3" : "3. Nintendo and Samsung",
     "btn4" : "4. Xbox and 360",
-    "correctBtn" : "2. Google and Facebook"
   },{
     "quizQuestion" : "An array can be used to store values of what type:",
     "btn1" : "1. Numbers, strings and booleans",
     "btn2" : "2. Other arrays",
     "btn3" : "3. All of the above",
     "btn4" : "4. None of the above",
-    "correctBtn" : "3. All of the above"
   },{
     "quizQuestion" : "A function must include what _____:",
     "btn1" : "1. Quotation marks",
     "btn2" : "2. String values",
     "btn3" : "3. Willingness to learn",
     "btn4" : "4. Parenthesis",
-    "correctBtn" : "4. Parenthesis"
   }
 ]
+
+var correctResponse = [
+  {
+    "questionArr[0]" : "1. HTML, CSS, Javascript",
+    "questionArr[1]" : "3. Styling elements",
+    "questionArr[2]" : "2. Google and Facebook",
+    "questionArr[3]" : "3. All of the above",
+    "questionArr[4]" : "4. Parenthesis",
+  }
+]
+
 
 var startScore = 0;
 var qIndex = 0;
