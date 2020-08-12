@@ -49,13 +49,14 @@ var questionArr = [
   }
 ]
 
+// separate correct response index to pass the question index past
 var correctResponse = [
   {
-    "questionArr[0]" : "1. HTML, CSS, Javascript",
-    "questionArr[1]" : "3. Styling elements",
-    "questionArr[2]" : "2. Google and Facebook",
-    "questionArr[3]" : "3. All of the above",
-    "questionArr[4]" : "4. Parenthesis",
+     0 : "1. HTML, CSS, Javascript",
+     1 : "2. Google and Facebook",
+    2 : "3. Styling elements",
+    3 : "3. All of the above",
+    4 : "4. Parenthesis",
   }
 ]
 
@@ -84,7 +85,7 @@ function theQuiz() {
 function startQuiz() {
   document.getElementById("startPage").style.display = "none";
   document.getElementById("quizPage").style.display = "block";
-  document.getElementById("header").style.display = "block";
+//  document.getElementById("header").style.display = "block";
   document.getElementById("scorePage").style.display = "none";
 };
 
@@ -107,45 +108,69 @@ function showEachQ() {
   option3.setAttribute("data-answer", q.btn3);
   option4.innerHTML = q.btn4;
   option4.setAttribute("data-answer", q.btn4);
+ 
+
 };
 
 showEachQ();
 
-option1.addEventListener("click", function(atPointer){
-  checkAnswer(atPointer);
+option1.addEventListener("click", function(){
+
+  // grab the text that's displayed in option 1 
+  var optionText = document.getElementById("btn1").getAttribute("data-answer");
+
+  // then pass that text to the answerQuery
+  answerQuery(0,optionText);
 });
-option2.addEventListener("click", function(atPointer){
-  checkAnswer(atPointer);
+
+option2.addEventListener("click", function(){
+
+  // grab the text that's displayed in option 2
+  var optionText = document.getElementById("btn2").getAttribute("data-answer");
+
+  // then pass that text to the answerQuery
+  answerQuery(1,optionText);
 });
-option3.addEventListener("click", function(atPointer){
-  checkAnswer(atPointer);
+
+option3.addEventListener("click", function(){
+
+  // grab the text that's displayed in option 3 
+  var optionText = document.getElementById("btn3").getAttribute("data-answer");
+
+  // then pass that text to the answerQuery
+  answerQuery(2,optionText);
 });
-option4.addEventListener("click", function(atPointer){
-  checkAnswer(atPointer);
+
+option4.addEventListener("click", function(){
+
+  // grab the text that's displayed in option 4 
+  var optionText = document.getElementById("btn4").getAttribute("data-answer");
+
+  // then pass that text to the answerQuery
+  answerQuery(3,optionText);
 });
 
 
-function answerQuery(event){
+// compares question index to the answer index
+function answerQuery(questionIndex, optionText){
   event.preventDefault();
-
-  var answer = event.currentTarget.dataset.answer;
-  var correctAnswer = null;
-
-  if (questionArr[qIndex].correct === answer) {
-    correctAnswer = answer;
+ if (qIndex == 3 || qIndex == 4){
+    questionIndex++
   }
-  if (answer === correctAnswer) {
-    quizAnswer.textContent = "Correct!";
+
+  // pass the score increment down here
+  var answer = correctResponse[0][questionIndex];
+
+  if (optionText === answer) {
+   console.log("correct");
+   qIndex++;
+   showEachQ();
+
+  // pass the loss of score or time here
   } else {
-    quizAnswer.textContent = "Wrong!";
+    console.log("answer " + answer)
+    console.log("option " + optionText)
   }
-  if (quizQuestions.length === qIndex + 1) {
-  return finalScore();
-  }
-
-  qIndex++;
-
-showEachQ();
 }
 
 
