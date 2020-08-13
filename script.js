@@ -62,6 +62,7 @@ var correctResponse = [
 var startScore = 0;
 var qIndex = 0;
 
+var quizAnswer = document.getElementById("quizAnswer");
 var score = document.getElementById("score");
 var cachedAnswer = document.getElementById("quizAnswer");
 
@@ -149,20 +150,20 @@ function answerQuery(questionIndex, optionText){
     questionIndex++
   }
 
-  // pass the score increment down here
+  // pass the score increment here
   var answer = correctResponse[0][questionIndex];
 
   if (optionText === answer) {
     qIndex++;
-    console.log("correct");
+    quizAnswer.textContent = "Correct!";
     score++;
     localStorage.setItem("score", score);
     showEachQ();
 
-  // pass the loss of score or time here
+  // pass the score decrement here
   } else {
     qIndex++;
-    console.log("incorrect");
+    quizAnswer.textContent = "Incorrect!";
     score--;
     localStorage.setItem("score", score);
     showEachQ();
