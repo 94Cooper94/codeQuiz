@@ -7,13 +7,11 @@ var header = document.getElementById(".header");
 var quizPage = document.getElementById("quizPage");
 var scorePage = document.getElementById("scorePage");
 
-
 var option1 = document.getElementById("btn1");
 var option2 = document.getElementById("btn2");
 var option3 = document.getElementById("btn3");
 var option4 = document.getElementById("btn4");
 var correctOption = document.getElementById("correctBtn");
-
 
 var questionArr = [
   {
@@ -52,8 +50,8 @@ var questionArr = [
 // separate correct response index to pass the question index past
 var correctResponse = [
   {
-     0 : "1. HTML, CSS, Javascript",
-     1 : "2. Google and Facebook",
+    0 : "1. HTML, CSS, Javascript",
+    1 : "2. Google and Facebook",
     2 : "3. Styling elements",
     3 : "3. All of the above",
     4 : "4. Parenthesis",
@@ -85,16 +83,16 @@ function theQuiz() {
 function startQuiz() {
   document.getElementById("startPage").style.display = "none";
   document.getElementById("quizPage").style.display = "block";
-//  document.getElementById("header").style.display = "block";
   document.getElementById("scorePage").style.display = "none";
 };
 
 // Event listern for the startBtn
 startBtn.addEventListener("click", function(){ 
   startQuiz();
+  localStorage.setItem("score", startScore);
 });
 
-// Draws Up the Questions -- work in progress ):
+// Draws up each set of questions!
 function showEachQ() {
   var q = questionArr[qIndex];
 
@@ -108,53 +106,46 @@ function showEachQ() {
   option3.setAttribute("data-answer", q.btn3);
   option4.innerHTML = q.btn4;
   option4.setAttribute("data-answer", q.btn4);
- 
-
 };
 
 showEachQ();
 
-option1.addEventListener("click", function(){
+// Compares the questionArr to the solutionIndex. It works and I'm scared of breaking it
 
+option1.addEventListener("click", function(){
   // grab the text that's displayed in option 1 
   var optionText = document.getElementById("btn1").getAttribute("data-answer");
-
   // then pass that text to the answerQuery
   answerQuery(0,optionText);
 });
 
 option2.addEventListener("click", function(){
-
   // grab the text that's displayed in option 2
   var optionText = document.getElementById("btn2").getAttribute("data-answer");
-
   // then pass that text to the answerQuery
   answerQuery(1,optionText);
 });
 
 option3.addEventListener("click", function(){
-
   // grab the text that's displayed in option 3 
   var optionText = document.getElementById("btn3").getAttribute("data-answer");
-
   // then pass that text to the answerQuery
   answerQuery(2,optionText);
 });
 
 option4.addEventListener("click", function(){
-
   // grab the text that's displayed in option 4 
   var optionText = document.getElementById("btn4").getAttribute("data-answer");
-
   // then pass that text to the answerQuery
   answerQuery(3,optionText);
 });
 
 
-// compares question index to the answer index
+
 function answerQuery(questionIndex, optionText){
   event.preventDefault();
- if (qIndex == 3 || qIndex == 4){
+  // this is needed because the question and solutionArrs get jumbled up and need a gentle push forward
+  if (qIndex == 3 || qIndex == 4){
     questionIndex++
   }
 
@@ -162,14 +153,19 @@ function answerQuery(questionIndex, optionText){
   var answer = correctResponse[0][questionIndex];
 
   if (optionText === answer) {
-   console.log("correct");
-   qIndex++;
-   showEachQ();
+    qIndex++;
+    console.log("correct");
+    score++;
+    localStorage.setItem("score", score);
+    showEachQ();
 
   // pass the loss of score or time here
   } else {
-    console.log("answer " + answer)
-    console.log("option " + optionText)
+    qIndex++;
+    console.log("incorrect");
+    score--;
+    localStorage.setItem("score", score);
+    showEachQ();
   }
 }
 
