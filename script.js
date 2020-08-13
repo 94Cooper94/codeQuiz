@@ -7,12 +7,13 @@ var header = document.getElementById(".header");
 var quizPage = document.getElementById("quizPage");
 var scorePage = document.getElementById("scorePage");
 
-var option1 = document.getElementById("btn1");
-var option2 = document.getElementById("btn2");
-var option3 = document.getElementById("btn3");
-var option4 = document.getElementById("btn4");
+var choice1 = document.getElementById("btn1");
+var choice2 = document.getElementById("btn2");
+var choice3 = document.getElementById("btn3");
+var choice4 = document.getElementById("btn4");
 var correctOption = document.getElementById("correctBtn");
 
+// my array of questions
 var questionArr = [
   {
     "quizQuestion" : "Commonly referred to the building block languages of the internet:",
@@ -71,83 +72,104 @@ var initialInput = document.getElementById("initialInput");
 var initialBtn = document.getElementById("initialBtn");
 
 
+function highScores() {
+  // incomplete at the moment
+}
 
-// Starter Page
-function theQuiz() {
-  document.getElementById("startPage").style.display = "block";
-  document.getElementById("header").style.display = "none";
-  document.getElementById("quizPage").style.display = "none";
-  document.getElementById("scorePage").style.display = "none";
-};
+
+function quizTimer() {
+    var timeEl = document.querySelector("#timer");
+    var secondsLeft = 90;
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeEl.textContent = "Time: " + secondsLeft;
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        highScores();
+    }
+  }, 1000);
+}
+
 
 // Shifts to Quiz Page
 function startQuiz() {
   document.getElementById("startPage").style.display = "none";
   document.getElementById("quizPage").style.display = "block";
+  document.querySelector(".header").style.display = "block";
   document.getElementById("scorePage").style.display = "none";
 };
 
 // Event listern for the startBtn
 startBtn.addEventListener("click", function(){ 
   startQuiz();
+  quizTimer();
   localStorage.setItem("score", startScore);
 });
 
 // Draws up each set of questions!
-function showEachQ() {
+function showQ() {
   var q = questionArr[qIndex];
 
   quizQuestion.innerHTML = q.quizQuestion;
 
-  option1.innerHTML = q.btn1;
-  option1.setAttribute("data-answer", q.btn1);
-  option2.innerHTML = q.btn2;
-  option2.setAttribute("data-answer", q.btn2);
-  option3.innerHTML = q.btn3;
-  option3.setAttribute("data-answer", q.btn3);
-  option4.innerHTML = q.btn4;
-  option4.setAttribute("data-answer", q.btn4);
+  choice1.innerHTML = q.btn1;
+  choice1.setAttribute("data-answer", q.btn1);
+  choice2.innerHTML = q.btn2;
+  choice2.setAttribute("data-answer", q.btn2);
+  choice3.innerHTML = q.btn3;
+  choice3.setAttribute("data-answer", q.btn3);
+  choice4.innerHTML = q.btn4;
+  choice4.setAttribute("data-answer", q.btn4);
 };
 
-showEachQ();
+showQ();
 
 // Compares the questionArr to the solutionIndex. It works and I'm scared of breaking it
 
-option1.addEventListener("click", function(){
-  // grab the text that's displayed in option 1 
+choice1.addEventListener("click", function(){
+  // grab the text that's displayed in the first option
   var optionText = document.getElementById("btn1").getAttribute("data-answer");
   // then pass that text to the answerQuery
   answerQuery(0,optionText);
 });
 
-option2.addEventListener("click", function(){
-  // grab the text that's displayed in option 2
+choice2.addEventListener("click", function(){
+  // grab the text that's displayed in the second option
   var optionText = document.getElementById("btn2").getAttribute("data-answer");
   // then pass that text to the answerQuery
   answerQuery(1,optionText);
 });
 
-option3.addEventListener("click", function(){
-  // grab the text that's displayed in option 3 
+choice3.addEventListener("click", function(){
+  // grab the text that's displayed in the third option
   var optionText = document.getElementById("btn3").getAttribute("data-answer");
   // then pass that text to the answerQuery
   answerQuery(2,optionText);
 });
 
-option4.addEventListener("click", function(){
-  // grab the text that's displayed in option 4 
+choice4.addEventListener("click", function(){
+  // grab the text that's displayed in the fourth option
   var optionText = document.getElementById("btn4").getAttribute("data-answer");
   // then pass that text to the answerQuery
   answerQuery(3,optionText);
 });
 
 
+function scoreTracker() {
+  var scoreUpdate = document.querySelector("#score");
+  scoreUpdate.innerHTML.setValue(score);
+}
+
+//   var scoreUpdate = score.innerHTML;
+//   scoreUpdate.innerHTML = "Score: " + score;
+
 
 function answerQuery(questionIndex, optionText){
   event.preventDefault();
   // this is needed because the question and solutionArrs get jumbled up and need a gentle push forward
-  if (qIndex == 3 || qIndex == 4){
-    questionIndex++
+  if (qIndex == 3 || qIndex == 4) {
+    questionIndex++;
   }
 
   // pass the score increment here
@@ -158,7 +180,8 @@ function answerQuery(questionIndex, optionText){
     quizAnswer.textContent = "Correct!";
     score++;
     localStorage.setItem("score", score);
-    showEachQ();
+    showQ();
+    scoreTracker();
 
   // pass the score decrement here
   } else {
@@ -166,41 +189,7 @@ function answerQuery(questionIndex, optionText){
     quizAnswer.textContent = "Incorrect!";
     score--;
     localStorage.setItem("score", score);
-    showEachQ();
+    showQ();
+    scoreTracker();
   }
 }
-
-
-
-
-
-// Scrapped attempting the timer due to limited time.
-// START TIMER CODE
-
-// var timeEl = document.querySelector("#timer");
-// var mainEl = document.getElementById("main");
-
-// var secondsLeft = 60;
-
-// function setTime() {
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timeEl.textContent = "Time: " + secondsLeft;
-
-//     if(secondsLeft === 0) {
-//       clearInterval(timerInterval);
-//       sendMessage();
-//     }
-//   }, 1000);
-// }
-// function sendMessage() {
-//   timeEl.textContent = " ";
-
-//   var imgEl = document.createElement("img");
-
-//   imgEl.setAttribute("src", "media/stop-hand.jpg");
-//   mainEl.appendChild(imgEl);
-// }
-// setTime();
-
-// END TIMER CODE
