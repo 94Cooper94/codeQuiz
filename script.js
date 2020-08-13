@@ -72,9 +72,9 @@ var initialInput = document.getElementById("initialInput");
 var initialBtn = document.getElementById("initialBtn");
 
 
-function highScores() {
-  // incomplete at the moment
-}
+// function highScores() {
+  
+// }
 
 
 function quizTimer() {
@@ -86,7 +86,7 @@ function quizTimer() {
   
       if(secondsLeft === 0) {
         clearInterval(timerInterval);
-        highScores();
+        // highScores();
     }
   }, 1000);
 }
@@ -156,13 +156,13 @@ choice4.addEventListener("click", function(){
 });
 
 
+// tracks users score in the top right corner
 function scoreTracker() {
+  var storedScore = localStorage.getItem("score");
   var scoreUpdate = document.querySelector("#score");
-  scoreUpdate.innerHTML.setValue(score);
-}
 
-//   var scoreUpdate = score.innerHTML;
-//   scoreUpdate.innerHTML = "Score: " + score;
+  scoreUpdate.innerText = "Score: " + storedScore;
+}
 
 
 function answerQuery(questionIndex, optionText){
