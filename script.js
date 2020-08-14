@@ -166,13 +166,8 @@ function highScores() {
   var storedScore = localStorage.getItem("score");
   var storedHighScore = document.querySelector("#highScore");
 
-  storedHighScore.innerText = storedScore; 
-
-  initialBtn.addEventListener("click", function(){
-    var optionText = document.getElementById("btn3").getAttribute("data-answer");
-    // adding an event listener to the initialBtn
-  }
-} 
+  storedHighScore.innerText = storedScore;
+}
 
 
 function answerQuery(questionIndex, optionText){
