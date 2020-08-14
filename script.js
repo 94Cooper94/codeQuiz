@@ -73,7 +73,7 @@ var initialBtn = document.getElementById("initialBtn");
 
 
 // function highScores() {
-  
+    // i tried so hard, and got so far, but in the end, it doesnt even matter
 // }
 
 

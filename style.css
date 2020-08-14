@@ -1,11 +1,30 @@
+* {
+    font-family: 'Baloo Tamma 2', cursive;
+    color: white;
+}
 #startPage {
     display: block;
 }
+.container {
+    position: relative;
+    align-items: center;
+    background-color: #333;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .header {
-    display: none;
+    background-color: #333;
+    margin-bottom: 10px;
 }
 #quizPage {
     display: none;
+    background-color: #333;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+#btn1 #btn2 #btn3 #btn4 {
+    padding-bottom: 10px;
 }
 #scorePage {
     display: none;
