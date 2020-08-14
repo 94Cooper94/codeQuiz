@@ -7,12 +7,13 @@ var header = document.getElementById(".header");
 var quizPage = document.getElementById("quizPage");
 var scorePage = document.getElementById("scorePage");
 
+// variables corresponding with each button to pass the questionArr index's string values through and begin comparing to the correctResponse array
 var choice1 = document.getElementById("btn1");
 var choice2 = document.getElementById("btn2");
 var choice3 = document.getElementById("btn3");
 var choice4 = document.getElementById("btn4");
 
-// my array of questions
+// array of questions
 var questionArr = [
   {
     "quizQuestion" : "Commonly referred to the building block languages of the internet:",
@@ -58,28 +59,13 @@ var correctResponse = [
   }
 ]
 
-
+// starting score, question Index
 var startScore = 0;
 var qIndex = 0;
 
-var quizAnswer = document.getElementById("quizAnswer");
 var score = document.getElementById("score");
+var quizAnswer = document.getElementById("quizAnswer");
 var cachedAnswer = document.getElementById("quizAnswer");
-
-
-function quizTimer() {
-    var timeEl = document.querySelector("#timer");
-    var secondsLeft = 30;
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timeEl.textContent = "Time: " + secondsLeft;
-  
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        highScores();
-    }
-  }, 1000);
-}
 
 
 // Shifts to Quiz Page
@@ -89,12 +75,30 @@ function startQuiz() {
   document.getElementById("scorePage").style.display = "none";
 };
 
-// Event listern for the startBtn
+
+// Event listener for the startBtn to activate the timer and the questions
 startBtn.addEventListener("click", function(){ 
   startQuiz();
   quizTimer();
   localStorage.setItem("score", startScore);
+  showQ();
 });
+
+// the timer function
+function quizTimer() {
+    var timeEl = document.querySelector("#timer");
+    var secondsLeft = 30;
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeEl.textContent = "Time: " + secondsLeft;
+  
+      if(secondsLeft === 0 || qIndex === 5) {
+        clearInterval(timerInterval);
+        highScores();
+    }
+  }, 1000);
+}
+
 
 // Draws up each set of questions!
 function showQ() {
@@ -112,7 +116,6 @@ function showQ() {
   choice4.setAttribute("data-answer", q.btn4);
 };
 
-showQ();
 
 // Compares the questionArr to the solutionIndex. It works and I'm scared of breaking it
 
@@ -153,11 +156,13 @@ function scoreTracker() {
   scoreUpdate.innerText = "Score: " + storedScore;
 }
 
+// would be the functional user-initial input section which would store user's initials. couldn't get it quite working.
 var initials = document.getElementById("initials");
 var initialInput = document.getElementById("initialInput");
 var initialBtn = document.getElementById("initialBtn");
 var highScoreLog = document.getElementById("highScore");
 
+// shows the high score page
 function highScores() {
   document.getElementById("quizPage").style.display = "none";
   document.querySelector(".header").style.display = "none";
@@ -166,14 +171,14 @@ function highScores() {
   var storedScore = localStorage.getItem("score");
   var storedHighScore = document.querySelector("#highScore");
 
-  storedHighScore.innerText = storedScore;
+  storedHighScore.innerText = storedScore + " points";
 }
 
-
+// this is the actual function that compares the questions in the questionIndex to the corresponding solutions in the correctResponse index
 function answerQuery(questionIndex, optionText){
   event.preventDefault();
-  // this is needed because the question and solutionArrs get jumbled up and need a gentle push forward
-  
+
+  // this is needed because the question and solutionArrs get jumbled up and need a gentle push forward. 
   if (qIndex == 3 || qIndex == 4) {
     questionIndex++;
   }
@@ -188,10 +193,6 @@ function answerQuery(questionIndex, optionText){
     localStorage.setItem("score", score);
     showQ();
     scoreTracker();
-    if (questionIndex == 4) {
-      highScores();
-    }
-
   // pass the score decrement here
   } else {
     qIndex++;
@@ -200,8 +201,5 @@ function answerQuery(questionIndex, optionText){
     localStorage.setItem("score", score);
     showQ();
     scoreTracker();
-    if (questionIndex == 4) {
-      highScores();
-    }
   }
 }

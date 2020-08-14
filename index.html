@@ -1,18 +1,4 @@
-<!-- As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
-
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score -->
-
-
+<!-- Code Quiz -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +17,7 @@ THEN I can save my initials and score -->
 
 <body>
 
-<!-- navbar that takes users to the highscore page -->
+<!-- navbar that tracks user's remaining time and total score -->
 <nav class="header">
 
     <div class="card-body justify-content-end">
@@ -44,7 +30,7 @@ THEN I can save my initials and score -->
 <!-- container class that holds each page value -->
 <main class="container">
    
-    <!-- this will be the 'home' page value -->
+    <!-- this is the starting page -->
     <div id="startPage">
         <h1 id="startHeader">Code Quiz Wizards</h1>
         <p id="startText">Welcome to the coding wizard quiz! Score increases by 1 per correct answer and decreases by 1 per incorrect answer. The timer is present as a courtesy to the test-taker; time will not be deducted per incorrect response.</p>
@@ -53,7 +39,7 @@ THEN I can save my initials and score -->
         </div>
     </div>
  
-    <!-- this will be the cycling 'question page' value -->
+    <!-- these are the empty button values that pass information from questionArr's index in the script.js -->
     <div id="quizPage">
         <div class="btn-group-vertical" role="group" aria-label="Basic example">
             <h3 id="quizQuestion"></h3>
@@ -65,11 +51,11 @@ THEN I can save my initials and score -->
             </ol>
         </div>
 
-        <!-- tracks the users responses -->
+        <!-- broadcasts whether the user was correct or incorrect -->
         <div id="quizAnswer"></div>
     </div>
 
-    <!-- the final page that requests user initials to pair with their score -->
+    <!-- the final page that requests user initials to pair with their score || WORK IN PROGRESS -->
     <div id="scorePage">
         <h3 id="resultsText">the results are in...<span id="highScore"></span></h3>
         <div id="finalScore"></div>
@@ -79,7 +65,7 @@ THEN I can save my initials and score -->
                 <label for="text" id="initials" class="col col-form-label input-group"></label>
                 <div> 
                 <input type="text" class="col form-control" id="initialInput" placeholder="--initial here">
-                <button type="button" id="initialBtn" class="btn btn-secondary"></button></a>
+                <button type="button" id="initialBtn" class="btn btn-secondary">Submit</button></a>
             </div>
 
         </form>
@@ -87,7 +73,7 @@ THEN I can save my initials and score -->
 
 </main>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
 
