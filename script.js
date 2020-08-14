@@ -11,7 +11,6 @@ var choice1 = document.getElementById("btn1");
 var choice2 = document.getElementById("btn2");
 var choice3 = document.getElementById("btn3");
 var choice4 = document.getElementById("btn4");
-var correctOption = document.getElementById("correctBtn");
 
 // my array of questions
 var questionArr = [
@@ -67,26 +66,17 @@ var quizAnswer = document.getElementById("quizAnswer");
 var score = document.getElementById("score");
 var cachedAnswer = document.getElementById("quizAnswer");
 
-var initials = document.getElementById("initials");
-var initialInput = document.getElementById("initialInput");
-var initialBtn = document.getElementById("initialBtn");
-
-
-// function highScores() {
-    // i tried so hard, and got so far, but in the end, it doesnt even matter
-// }
-
 
 function quizTimer() {
     var timeEl = document.querySelector("#timer");
-    var secondsLeft = 90;
+    var secondsLeft = 30;
     var timerInterval = setInterval(function() {
       secondsLeft--;
       timeEl.textContent = "Time: " + secondsLeft;
   
       if(secondsLeft === 0) {
         clearInterval(timerInterval);
-        // highScores();
+        highScores();
     }
   }, 1000);
 }
@@ -96,7 +86,6 @@ function quizTimer() {
 function startQuiz() {
   document.getElementById("startPage").style.display = "none";
   document.getElementById("quizPage").style.display = "block";
-  document.querySelector(".header").style.display = "block";
   document.getElementById("scorePage").style.display = "none";
 };
 
@@ -164,10 +153,32 @@ function scoreTracker() {
   scoreUpdate.innerText = "Score: " + storedScore;
 }
 
+var initials = document.getElementById("initials");
+var initialInput = document.getElementById("initialInput");
+var initialBtn = document.getElementById("initialBtn");
+var highScoreLog = document.getElementById("highScore");
+
+function highScores() {
+  document.getElementById("quizPage").style.display = "none";
+  document.querySelector(".header").style.display = "none";
+  document.getElementById("scorePage").style.display = "block";
+  
+  var storedScore = localStorage.getItem("score");
+  var storedHighScore = document.querySelector("#highScore");
+
+  storedHighScore.innerText = storedScore; 
+
+  initialBtn.addEventListener("click", function(){
+    var optionText = document.getElementById("btn3").getAttribute("data-answer");
+    // adding an event listener to the initialBtn
+  }
+} 
+
 
 function answerQuery(questionIndex, optionText){
   event.preventDefault();
   // this is needed because the question and solutionArrs get jumbled up and need a gentle push forward
+  
   if (qIndex == 3 || qIndex == 4) {
     questionIndex++;
   }
@@ -182,6 +193,9 @@ function answerQuery(questionIndex, optionText){
     localStorage.setItem("score", score);
     showQ();
     scoreTracker();
+    if (questionIndex == 4) {
+      highScores();
+    }
 
   // pass the score decrement here
   } else {
@@ -191,5 +205,8 @@ function answerQuery(questionIndex, optionText){
     localStorage.setItem("score", score);
     showQ();
     scoreTracker();
+    if (questionIndex == 4) {
+      highScores();
+    }
   }
 }
