@@ -1,6 +1,6 @@
 # codeQuiz
 
-https://94cooper94.github.io/codeQuiz/
+## Deployed Site: https://94cooper94.github.io/codeQuiz/
 
 Welcome to the very exciting and unique coding related quiz created, designed and maintained by yours truly (Cooper Ahearn). I've included an active link above-- feel free to take the quiz at your leisure and test your web development aptitude.
 
