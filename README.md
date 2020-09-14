@@ -17,3 +17,8 @@ After answering a question, the div that contains the questions will alert the t
 The highscore/final page is a work in progress. Answering incorrectly causing the timer to be reduced is also a work in progress. Otherwise, enjoy what you see! I'll be refinishing this quiz overtime as my skillset grows broader.
 
 Thank you for stopping by.
+
+## Technologies Used 
+- GitHub & GitHub Pages
+- HTML & CSS
+- JavaScript & JQuery
